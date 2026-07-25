@@ -1,6 +1,9 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { projects } from '../data/portfolioData';
+import { projects as staticProjects } from '../data/portfolioData';
 import './Projects.css';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -29,9 +32,13 @@ function ProjectCard({ project }) {
       }}
     >
       <div className="project-image">
-        <div className="project-placeholder">
-          <span>📱</span>
-        </div>
+        {project.image ? (
+          <img src={project.image} alt={project.title} className="project-img" />
+        ) : (
+          <div className="project-placeholder">
+            <span>📱</span>
+          </div>
+        )}
       </div>
       <div className="project-content">
         <h3 className="project-title">{project.title}</h3>
@@ -79,10 +86,38 @@ function ProjectCard({ project }) {
 }
 
 function Projects() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [slowLoad, setSlowLoad] = useState(false);
+
+  useEffect(() => {
+    const slowTimer = setTimeout(() => setSlowLoad(true), 3000);
+
+    fetch(`${API_URL}/api/projects`)
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(data => {
+        setProjects(data.map(p => ({
+          id: p.id,
+          title: p.title,
+          description: p.description,
+          technologies: p.technologies,
+          github: p.githubUrl,
+          demo: p.demoUrl,
+          image: p.imageUrl,
+        })));
+      })
+      .catch(() => setProjects(staticProjects))
+      .finally(() => { clearTimeout(slowTimer); setLoading(false); setSlowLoad(false); });
+
+    return () => clearTimeout(slowTimer);
+  }, []);
+
+  const displayProjects = projects.length > 0 ? projects : staticProjects;
+
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <motion.h2 
+        <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +126,7 @@ function Projects() {
         >
           I Miei Progetti
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="section-subtitle"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -100,17 +135,28 @@ function Projects() {
         >
           Una selezione dei progetti che ho sviluppato durante il mio percorso formativo
         </motion.p>
-        <motion.div 
-          className="projects-grid"
-          variants={listVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </motion.div>
+
+        {loading && slowLoad && (
+          <p className="api-loading-hint">⏳ Backend in avvio, attendere qualche secondo…</p>
+        )}
+
+        {loading ? (
+          <div className="projects-skeleton">
+            {[1, 2, 3, 4].map(i => <div key={i} className="skeleton-card" />)}
+          </div>
+        ) : (
+          <motion.div
+            className="projects-grid"
+            variants={listVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            {displayProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   );

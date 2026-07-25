@@ -88,3 +88,98 @@ main {
   }
 }
 
+/* ===== DARK MODE ===== */
+[data-theme="dark"] body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* About */
+[data-theme="dark"] .about {
+  background: #1e293b;
+}
+[data-theme="dark"] .section-title {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .about-text h3 {
+  color: #818cf8;
+}
+[data-theme="dark"] .about-text p {
+  color: #cbd5e1;
+}
+[data-theme="dark"] .about-text strong {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .highlight-item {
+  background: #0f172a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .highlight-item h4 {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .highlight-item p {
+  color: #94a3b8;
+}
+
+/* Skills */
+[data-theme="dark"] .skills {
+  background: #0f172a;
+}
+[data-theme="dark"] .skill-category {
+  background: #1e293b;
+  border-color: #334155;
+}
+[data-theme="dark"] .category-title {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .skill-item {
+  background: #0f172a;
+}
+[data-theme="dark"] .skill-item:hover {
+  background: #2d1b69;
+}
+[data-theme="dark"] .skill-name {
+  color: #e2e8f0;
+}
+
+/* Projects */
+[data-theme="dark"] .projects {
+  background: #1e293b;
+}
+[data-theme="dark"] .section-subtitle {
+  color: #94a3b8;
+}
+[data-theme="dark"] .project-card {
+  background: #0f172a;
+  border-color: #334155;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .project-title {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .project-description {
+  color: #94a3b8;
+}
+
+/* Contact */
+[data-theme="dark"] .contact {
+  background: #0f172a;
+}
+[data-theme="dark"] .contact-item {
+  background: #1e293b;
+}
+[data-theme="dark"] .contact-item:hover {
+  background: #334155;
+}
+[data-theme="dark"] .contact-item h3 {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .contact-item p {
+  color: #94a3b8;
+}
+
+/* Scrollbar dark */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+

@@ -10,7 +10,7 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-info">
             <h3>{personalInfo.name}</h3>
-            <p>Frontend Developer</p>
+            <p>Frontend / Web Developer</p>
           </div>
           <div className="footer-links">
             <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">

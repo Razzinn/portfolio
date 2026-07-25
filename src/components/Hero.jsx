@@ -46,7 +46,7 @@ function Hero() {
           Ciao, sono <span className="highlight">{personalInfo.name}</span>
         </motion.h1>
         <motion.h2 className="hero-subtitle" variants={itemVariants}>
-          {personalInfo.title}
+          {personalInfo.titleLine1}<br />{personalInfo.titleLine2}
         </motion.h2>
         <motion.p className="hero-description" variants={itemVariants}>
           {personalInfo.bio}

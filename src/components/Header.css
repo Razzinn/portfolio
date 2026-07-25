@@ -95,3 +95,55 @@
     padding: 0.3rem 0;
   }
 }
+
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+  background: #f3f4f6;
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: rotate(270deg);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .nav-menu button {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .nav-menu button:hover {
+  color: #818cf8;
+}
+
+[data-theme="dark"] .nav-menu button::after {
+  background: #818cf8;
+}
+
+[data-theme="dark"] .theme-toggle {
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: #1e293b;
+  border-color: #818cf8;
+  color: #818cf8;
+}

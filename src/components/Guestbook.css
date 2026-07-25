@@ -1,0 +1,189 @@
+.guestbook-section {
+  padding: 6rem 2rem;
+  background: #f9fafb;
+}
+
+.guestbook-layout {
+  max-width: 1000px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.guestbook-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.guestbook-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.guestbook-field input,
+.guestbook-field textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1f2937;
+  background: white;
+  transition: border-color 0.2s ease;
+  resize: vertical;
+}
+
+.guestbook-field input:focus,
+.guestbook-field textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+}
+
+.guestbook-field input:disabled,
+.guestbook-field textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.guestbook-error {
+  font-size: 0.82rem;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.guestbook-counter {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  text-align: right;
+}
+
+.guestbook-submit {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.guestbook-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.guestbook-success {
+  margin-top: 0.75rem;
+  color: #16a34a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.guestbook-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.guestbook-message {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+}
+
+.guestbook-message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.guestbook-message-header strong {
+  color: #1f2937;
+  font-size: 0.95rem;
+}
+
+.guestbook-date {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.guestbook-message p {
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.guestbook-loading,
+.guestbook-empty {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Dark mode */
+[data-theme="dark"] .guestbook-section {
+  background: #0f172a;
+}
+
+[data-theme="dark"] .guestbook-field label {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .guestbook-field input,
+[data-theme="dark"] .guestbook-field textarea {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .guestbook-field input:focus,
+[data-theme="dark"] .guestbook-field textarea:focus {
+  border-color: #818cf8;
+  background: #0f172a;
+}
+
+[data-theme="dark"] .guestbook-message {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .guestbook-message-header strong {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .guestbook-message p {
+  color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+  .guestbook-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .guestbook-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .guestbook-messages {
+    max-height: 320px;
+  }
+}

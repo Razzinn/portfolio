@@ -30,7 +30,7 @@ function Contact() {
           Interessato a collaborare? Sono sempre aperto a nuove opportunità e progetti interessanti
         </motion.p>
         <div className="contact-content">
-          <motion.div 
+          <motion.div
             className="contact-info"
             initial="hidden"
             whileInView="visible"
@@ -88,7 +88,7 @@ function Contact() {
               </div>
             </motion.div>
           </motion.div>
-          <motion.div 
+          <motion.div
             className="contact-cta"
             initial={{ opacity: 0, x: 40, scale: 0.96 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -97,12 +97,12 @@ function Contact() {
           >
             <h3>Cerco Opportunità</h3>
             <p>
-              Sono attualmente alla ricerca di posizioni da Frontend Developer. 
-              Se hai un'opportunità interessante o vuoi semplicemente fare una chiacchierata, 
+              Sono attualmente alla ricerca di posizioni da Frontend Developer.
+              Se hai un'opportunità interessante o vuoi semplicemente fare una chiacchierata,
               non esitare a contattarmi!
             </p>
-            <motion.a 
-              href={`mailto:${personalInfo.email}`} 
+            <motion.a
+              href={`mailto:${personalInfo.email}`}
               className="btn-contact"
               whileHover={{ scale: 1.06, y: -4, boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}
               whileTap={{ scale: 0.96 }}
@@ -111,6 +111,7 @@ function Contact() {
             </motion.a>
           </motion.div>
         </div>
+
       </div>
     </section>
   );

@@ -1,25 +1,39 @@
 // Informazioni personali
 export const personalInfo = {
   name: "Razvan-Mihai Ignat",
-  title: "Frontend Developer",
-  email: "razvan.ignat@example.com", // Aggiorna con la tua email
+  titleLine1: "Front End Developer | Web Developer",
+  titleLine2: "Java · Spring Boot · React · Angular",
+  email: "razvan.ignat@gmail.com",
   github: "https://github.com/Razzinn",
-  linkedin: "https://linkedin.com/in/razvan-ignat", // Aggiorna con il tuo profilo
-  location: "Italia",
-  bio: "Frontend Developer con diploma conseguito tramite Develhope. Appassionato di sviluppo web e mobile, in cerca di opportunità nel campo dello sviluppo software. Specializzato nella creazione di interfacce utente moderne e responsive utilizzando React e le tecnologie web più recenti."
+  linkedin: "https://www.linkedin.com/in/razvan-ignat-51374a357",
+  location: "Italia, Abruzzo",
+  bio: "Sviluppatore web con solide competenze in Java enterprise e nei principali framework frontend moderni. Ho completato un'academy Formatemp di 248 ore focalizzata su architetture end‑to‑end con Java + Spring Boot, REST API e integrazione con database relazionali. Sul fronte frontend ho lavorato con React e Angular, realizzando UI responsive e componenti riutilizzabili. Cerco una posizione come Junior Java Developer, Full Stack Developer o Frontend Developer."
 };
 
 // Competenze tecniche
 export const skills = [
   {
+    category: "Backend",
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "Spring MVC",
+      "Spring Data JPA",
+      "REST API",
+      "MySQL",
+      "OOP & Design Patterns",
+      "Stream API & Collections"
+    ]
+  },
+  {
     category: "Frontend",
     technologies: [
       "React.js",
+      "Angular",
       "JavaScript (ES6+)",
+      "TypeScript",
       "HTML5",
-      "CSS3",
-      "Responsive Design",
-      "TypeScript"
+      "CSS3"
     ]
   },
   {
@@ -36,28 +50,20 @@ export const skills = [
     category: "Tools & Workflow",
     technologies: [
       "Git & GitHub",
+      "Maven",
       "Vite",
-      "Webpack",
       "npm/yarn",
-      "VS Code",
-      "Chrome DevTools"
+      "IntelliJ IDEA",
+      "VS Code"
     ]
   },
   {
-    category: "Mobile Development",
+    category: "Soft Skills",
     technologies: [
-      "React Native",
-      "Progressive Web Apps",
-      "Mobile-First Design"
-    ]
-  },
-  {
-    category: "Altri",
-    technologies: [
-      "REST APIs",
-      "JSON",
-      "Responsive Design",
-      "UI/UX Principles",
+      "Team Working",
+      "Problem Solving",
+      "Gestione della pressione",
+      "Disciplina",
       "Agile/Scrum"
     ]
   }
@@ -69,7 +75,7 @@ export const projects = [
     id: 1,
     title: "Art.E",
     description: "Applicazione web per la scoperta e fruizione di contenuti artistici digitali. Interfaccia moderna con focus su visual design, animazioni e navigazione fluida tra le opere.",
-    technologies: ["React", "TypeScript", "Vite", "Framer Motion", "CSS3"],
+    technologies: ["React", "JavaScript", "Vite", "Framer Motion", "CSS3"],
     github: "https://github.com/Razzinn/Art.E",
     demo: "https://razzinn.github.io/Art.E",
     image: "/projects/arte.jpg"
@@ -77,11 +83,11 @@ export const projects = [
   {
     id: 2,
     title: "DU'A",
-    description: "Applicazione orientata al mondo spirituale/ispirazionale con gestione di contenuti testuali, liste e preferiti. Pensata per l'utilizzo mobile-first con UI pulita e leggibile.",
+    description: "E-Commerce pensato per la vendita di articoli per un publico musulmano / arabo; Una applicazione sviluppata in React e Vite; Con l'utilizzo della libreria JsPDF per generare cedolini per pagmenti bancari, e l'implementazione del i18n per la internazionalizzazione dell'app. .",
     technologies: ["React", "JavaScript", "CSS Modules", "Responsive Design"],
     github: "https://github.com/Razzinn/DU-A-",
-    demo: "https://razzinn.github.io/DUA",
-    image: "/projects/dua.jpg"
+    demo: "https://du-a-987-kappa.vercel.app",
+    image: "/dua-img.png"
   },
   {
     id: 3,
