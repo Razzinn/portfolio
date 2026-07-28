@@ -9,8 +9,8 @@ const containerVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
-      when: 'beforeChildren',
+      ease: 'easeOut' as const,
+      when: 'beforeChildren' as const,
       staggerChildren: 0.15,
     },
   },
@@ -28,7 +28,7 @@ const floatingVariants = {
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   },
 };

@@ -1,6 +1,9 @@
+import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import './Contact.css';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 const contactItemVariants = {
   hidden: { opacity: 0, x: -30 },
@@ -8,6 +11,37 @@ const contactItemVariants = {
 };
 
 function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setName('');
+        setEmail('');
+        setMessage('');
+        setTimeout(() => setSubmitted(false), 4000);
+        return;
+      }
+    } catch {
+      // backend non raggiungibile — fallback via mailto
+    }
+    window.open(`mailto:${personalInfo.email}?subject=Contatto da ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`, '_blank');
+    setSubmitting(false);
+  };
+
   return (
     <section id="contact" className="contact">
       <div className="container">
@@ -88,30 +122,72 @@ function Contact() {
               </div>
             </motion.div>
           </motion.div>
-          <motion.div
-            className="contact-cta"
-            initial={{ opacity: 0, x: 40, scale: 0.96 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+
+          <motion.form
+            className="contact-form"
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            <h3>Cerco Opportunità</h3>
-            <p>
-              Sono attualmente alla ricerca di posizioni da Frontend Developer.
-              Se hai un'opportunità interessante o vuoi semplicemente fare una chiacchierata,
-              non esitare a contattarmi!
-            </p>
-            <motion.a
-              href={`mailto:${personalInfo.email}`}
-              className="btn-contact"
-              whileHover={{ scale: 1.06, y: -4, boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}
-              whileTap={{ scale: 0.96 }}
+            <h3 className="contact-form-title">Invia un messaggio</h3>
+            <div className="contact-field">
+              <label htmlFor="contact-name">Nome</label>
+              <input
+                id="contact-name"
+                type="text"
+                placeholder="Il tuo nome"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                disabled={submitting}
+              />
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-email">Email</label>
+              <input
+                id="contact-email"
+                type="email"
+                placeholder="la.tua@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={submitting}
+              />
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-message">Messaggio</label>
+              <textarea
+                id="contact-message"
+                placeholder="Scrivi il tuo messaggio..."
+                rows={5}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                disabled={submitting}
+              />
+            </div>
+            <motion.button
+              type="submit"
+              className="contact-submit"
+              disabled={submitting}
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
             >
-              Invia un'Email
-            </motion.a>
-          </motion.div>
+              {submitting ? 'Invio…' : 'Invia Messaggio'}
+            </motion.button>
+            {submitted && (
+              <motion.p
+                className="contact-success"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                Messaggio inviato con successo! Ti risponderò al più presto.
+              </motion.p>
+            )}
+          </motion.form>
         </div>
-
       </div>
     </section>
   );

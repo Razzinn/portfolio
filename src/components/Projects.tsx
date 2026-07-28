@@ -1,34 +1,42 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { projects as staticProjects } from '../data/portfolioData';
+import { projects as staticProjects, type Project } from '../data/portfolioData';
 import './Projects.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
+interface ApiProject {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  githubUrl: string;
+  demoUrl: string | null;
+  imageUrl: string | null;
+}
+
 const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1 },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const listVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.18,
+      staggerChildren: 0.15,
     },
   },
 };
 
-function ProjectCard({ project }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.div
       className="project-card"
       variants={cardVariants}
       whileHover={{
-        y: -10,
-        scale: 1.02,
-        rotate: [-0.3, 0.3, -0.3],
-        transition: { duration: 0.4 },
+        y: -6,
+        transition: { duration: 0.3 },
       }}
     >
       <div className="project-image">
@@ -86,7 +94,7 @@ function ProjectCard({ project }) {
 }
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [slowLoad, setSlowLoad] = useState(false);
 
@@ -95,16 +103,19 @@ function Projects() {
 
     fetch(`${API_URL}/api/projects`)
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-      .then(data => {
-        setProjects(data.map(p => ({
-          id: p.id,
-          title: p.title,
-          description: p.description,
-          technologies: p.technologies,
-          github: p.githubUrl,
-          demo: p.demoUrl,
-          image: p.imageUrl,
-        })));
+      .then((data: ApiProject[]) => {
+        setProjects(data.map(p => {
+          const fallback = staticProjects.find(s => s.id === p.id);
+          return {
+            id: p.id,
+            title: p.title,
+            description: p.description,
+            technologies: p.technologies,
+            github: p.githubUrl,
+            demo: p.demoUrl,
+            image: p.imageUrl || fallback?.image || null,
+          };
+        }));
       })
       .catch(() => setProjects(staticProjects))
       .finally(() => { clearTimeout(slowTimer); setLoading(false); setSlowLoad(false); });
@@ -142,7 +153,7 @@ function Projects() {
 
         {loading ? (
           <div className="projects-skeleton">
-            {[1, 2, 3, 4].map(i => <div key={i} className="skeleton-card" />)}
+            {staticProjects.map((_, i) => <div key={i} className="skeleton-card" />)}
           </div>
         ) : (
           <motion.div

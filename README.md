@@ -1,16 +1,55 @@
-# React + Vite
+# Portfolio — Razvan-Mihai Ignat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personale realizzato con React + Vite, con supporto TypeScript, dark mode, animazioni Framer Motion e backend Spring Boot per guestbook e progetti.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Frontend**
+- React 19, TypeScript, Vite
+- Framer Motion (animazioni)
+- CSS puro (responsive, dark/light theme)
 
-## React Compiler
+**Backend** (separato)
+- Java 17+, Spring Boot, Spring Data JPA
+- MySQL
+- REST API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funzionalità
 
-## Expanding the ESLint configuration
+- Hero con introduzione animata
+- Sezione About con highlight e link CV
+- Skills categorizzate
+- Progetti (caricati da API o fallback locale)
+- Guestbook interattivo (invia e leggi messaggi)
+- Contatti con form funzionante
+- Dark / Light mode
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Sviluppo
+
+```bash
+npm install
+npm run dev       # sviluppo su http://localhost:5173
+npm run build     # produzione in dist/
+npm run preview   # preview build
+npm run lint      # ESLint
+npm run test      # Vitest
+```
+
+## Struttura
+
+```
+src/
+├── components/   # Componenti React
+├── data/         # Dati statici (progetti, skills, info)
+├── App.tsx
+├── main.tsx
+└── index.css
+
+public/
+├── CV_Ignat_Razvan_Mihai.pdf
+└── *.png          # Screenshot progetti
+```
+
+## Deploy
+
+Build statici in `dist/`, ospitabili su Vercel, Netlify, GitHub Pages o simile.

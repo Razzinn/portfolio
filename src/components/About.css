@@ -95,6 +95,35 @@
   line-height: 1.5;
 }
 
+.about-cv {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-cv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.45);
+}
+
+[data-theme="dark"] .btn-cv {
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
 @media (max-width: 768px) {
   .about {
     padding: 4rem 1.5rem;

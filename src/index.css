@@ -68,6 +68,14 @@ main {
   }
 }
 
+.section-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
 /* Utility classes */
 .container {
   max-width: 1200px;

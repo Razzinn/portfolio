@@ -1,6 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import './Guestbook.css';
+
+interface GuestbookMessage {
+  id: number;
+  name: string;
+  text: string;
+  createdAt: string;
+}
+
+interface FieldErrors {
+  name?: string;
+  text?: string;
+}
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
@@ -9,8 +21,8 @@ function Guestbook() {
   const [text, setText] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState({});
-  const [messages, setMessages] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [messages, setMessages] = useState<GuestbookMessage[]>([]);
   const [loadingMessages, setLoadingMessages] = useState(true);
 
   useEffect(() => {
@@ -20,7 +32,7 @@ function Guestbook() {
       .then(data => { setMessages(data); setLoadingMessages(false); });
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setFieldErrors({});
     setSubmitting(true);

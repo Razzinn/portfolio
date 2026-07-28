@@ -1,9 +1,35 @@
+export interface PersonalInfo {
+  name: string;
+  titleLine1: string;
+  titleLine2: string;
+  email: string;
+  github: string;
+  linkedin: string;
+  location: string;
+  bio: string;
+}
+
+export interface Skill {
+  category: string;
+  technologies: string[];
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  github: string;
+  demo: string | null;
+  image: string | null;
+}
+
 // Informazioni personali
-export const personalInfo = {
+export const personalInfo: PersonalInfo = {
   name: "Razvan-Mihai Ignat",
   titleLine1: "Front End Developer | Web Developer",
   titleLine2: "Java · Spring Boot · React · Angular",
-  email: "razvan.ignat@gmail.com",
+  email: "ig.razvan12@gmail.com",
   github: "https://github.com/Razzinn",
   linkedin: "https://www.linkedin.com/in/razvan-ignat-51374a357",
   location: "Italia, Abruzzo",
@@ -11,7 +37,7 @@ export const personalInfo = {
 };
 
 // Competenze tecniche
-export const skills = [
+export const skills: Skill[] = [
   {
     category: "Backend",
     technologies: [
@@ -70,43 +96,23 @@ export const skills = [
 ];
 
 // Progetti portfolio
-export const projects = [
+export const projects: Project[] = [
   {
     id: 1,
     title: "Art.E",
     description: "Applicazione web per la scoperta e fruizione di contenuti artistici digitali. Interfaccia moderna con focus su visual design, animazioni e navigazione fluida tra le opere.",
     technologies: ["React", "JavaScript", "Vite", "Framer Motion", "CSS3"],
     github: "https://github.com/Razzinn/Art.E",
-    demo: "https://razzinn.github.io/Art.E",
-    image: "/projects/arte.jpg"
+    demo: "https://art-e-ruddy.vercel.app",
+    image: "/arte-img.png"
   },
   {
     id: 2,
     title: "DU'A",
-    description: "E-Commerce pensato per la vendita di articoli per un publico musulmano / arabo; Una applicazione sviluppata in React e Vite; Con l'utilizzo della libreria JsPDF per generare cedolini per pagmenti bancari, e l'implementazione del i18n per la internazionalizzazione dell'app. .",
+    description: "E-Commerce pensato per la vendita di articoli per un publico musulmano / arabo; Una applicazione sviluppata in React e Vite; Con l'utilizzo della libreria JsPDF per generare cedolini per pagmenti bancari, e l'implementazione del i18n per la internazionalizzazione dell'app.",
     technologies: ["React", "JavaScript", "CSS Modules", "Responsive Design"],
     github: "https://github.com/Razzinn/DU-A-",
     demo: "https://du-a-987-kappa.vercel.app",
     image: "/dua-img.png"
   },
-  {
-    id: 3,
-    title: "T:HUB",
-    description: "Hub di task/tempo/produttività con gestione di liste, filtri e stato. Progettato per mostrare attenzione al dettaglio nelle micro-interazioni e nell'esperienza utente.",
-    technologies: ["React", "Hooks", "Local Storage", "Framer Motion"],
-    github: "https://github.com/Razzinn/T-HUB",
-    demo: "https://razzinn.github.io/T-HUB",
-    image: "/projects/thub.jpg"
-  },
-  {
-    id: 4,
-    title: "Erfioraio",
-    description: "Sito vetrina per un fioraio digitale, con presentazione di bouquet, categorie di prodotti e potenziale estensione e-commerce. Layout curato e storytelling visivo.",
-    technologies: ["React", "Vite", "CSS3", "Responsive Design"],
-    github: "https://github.com/Razzinn/ErFioraio",
-    demo: "https://razzinn.github.io/Erfioraio",
-    image: "/projects/erfioraio.jpg"
-  }
 ];
-
-// Nota: Aggiorna i link GitHub e demo con i tuoi progetti reali
