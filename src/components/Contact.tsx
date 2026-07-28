@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import './Contact.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8080').replace(/\/+$/, '');
 
 const contactItemVariants = {
   hidden: { opacity: 0, x: -30 },

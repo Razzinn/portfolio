@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { projects as staticProjects, type Project } from '../data/portfolioData';
 import './Projects.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8080').replace(/\/+$/, '');
 
 interface ApiProject {
   id: number;
