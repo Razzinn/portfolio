@@ -155,35 +155,4 @@
   }
 }
 
-.projects-skeleton {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
 
-.skeleton-card {
-  height: 400px;
-  border-radius: 16px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.api-loading-hint {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-
-[data-theme="dark"] .skeleton-card {
-  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}

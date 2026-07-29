@@ -1,19 +1,6 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { projects as staticProjects, type Project } from '../data/portfolioData';
+import { projects, type Project } from '../data/portfolioData';
 import './Projects.css';
-
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8080').replace(/\/+$/, '');
-
-interface ApiProject {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  githubUrl: string;
-  demoUrl: string | null;
-  imageUrl: string | null;
-}
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -94,37 +81,6 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function Projects() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [slowLoad, setSlowLoad] = useState(false);
-
-  useEffect(() => {
-    const slowTimer = setTimeout(() => setSlowLoad(true), 3000);
-
-    fetch(`${API_URL}/api/projects`)
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-      .then((data: ApiProject[]) => {
-        setProjects(data.map(p => {
-          const fallback = staticProjects.find(s => s.id === p.id);
-          return {
-            id: p.id,
-            title: p.title,
-            description: p.description,
-            technologies: p.technologies,
-            github: p.githubUrl,
-            demo: p.demoUrl,
-            image: p.imageUrl || fallback?.image || null,
-          };
-        }));
-      })
-      .catch(() => setProjects(staticProjects))
-      .finally(() => { clearTimeout(slowTimer); setLoading(false); setSlowLoad(false); });
-
-    return () => clearTimeout(slowTimer);
-  }, []);
-
-  const displayProjects = projects.length > 0 ? projects : staticProjects;
-
   return (
     <section id="projects" className="projects">
       <div className="container">
@@ -147,27 +103,17 @@ function Projects() {
           Una selezione dei progetti che ho sviluppato durante il mio percorso formativo
         </motion.p>
 
-        {loading && slowLoad && (
-          <p className="api-loading-hint">⏳ Backend in avvio, attendere qualche secondo…</p>
-        )}
-
-        {loading ? (
-          <div className="projects-skeleton">
-            {staticProjects.map((_, i) => <div key={i} className="skeleton-card" />)}
-          </div>
-        ) : (
-          <motion.div
-            className="projects-grid"
-            variants={listVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            {displayProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          className="projects-grid"
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </motion.div>
       </div>
     </section>
   );
