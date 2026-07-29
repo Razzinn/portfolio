@@ -32,7 +32,7 @@ export const personalInfo: PersonalInfo = {
   email: "ig.razvan12@gmail.com",
   github: "https://github.com/Razzinn",
   linkedin: "https://www.linkedin.com/in/razvan-ignat-51374a357",
-  location: "Italia, Abruzzo",
+  location: "Italia, Roma",
   bio: "Sviluppatore web con solide competenze in Java enterprise e nei principali framework frontend moderni. Ho completato un'academy Formatemp di 248 ore focalizzata su architetture end‑to‑end con Java + Spring Boot, REST API e integrazione con database relazionali. Sul fronte frontend ho lavorato con React e Angular, realizzando UI responsive e componenti riutilizzabili. Cerco una posizione come Junior Java Developer, Full Stack Developer o Frontend Developer."
 };
 
